@@ -15,4 +15,5 @@ libraryDependencies += "com.typesafe.akka" %% "akka-testkit" % "2.2.3"
 
 libraryDependencies += "org.rxtx" % "rxtx" % "2.1.7"
 
-libraryDependencies += "org.specs2" % "specs2_2.10" % "2.2.2" % "test"
+
+libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1" % "test"
