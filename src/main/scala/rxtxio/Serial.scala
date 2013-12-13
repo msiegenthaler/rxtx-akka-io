@@ -57,7 +57,7 @@ object Serial extends ExtensionId[SerialExt] with ExtensionIdProvider {
   /** Data was received on the serial port. */
   case class Received(data: ByteString) extends Event
 
-  /** Write data on the serial port. */
+  /** Write data on the serial port. Response: ack (if ack != NoAck) */
   case class Write(data: ByteString, ack: AckEvent = NoAck) extends OperatorCommand
 
   /** Ack for a write. */
