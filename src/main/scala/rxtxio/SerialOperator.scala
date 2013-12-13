@@ -24,11 +24,16 @@ private[rxtxio] class SerialOperator(port: SerialPort, commander: ActorRef) exte
     self ! DataAvailable //just in case
   }
 
+  override def postStop = {
+    commander ! Closed
+    port.close
+  }
+
   override def receive = {
     case Close =>
       port.close
       if (sender != commander) sender ! Closed
-      commander ! Closed
+      context.stop(self)
 
     case Write(data, ack) =>
       out.write(data.toArray)
