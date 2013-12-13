@@ -1,4 +1,4 @@
-name := "rxtx-scala-io"
+name := "rxtx-akka-io"
 
 scalaVersion := "2.10.3"
 
