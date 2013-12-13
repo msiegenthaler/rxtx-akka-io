@@ -18,5 +18,6 @@ class SerialMangerSpec extends TestKit(ActorSystem("SerialManagerSpec"))
   test("list ports") {
     IO(Serial) ! ListPorts
     val Ports(ports) = expectMsgType[Ports]
+    println("Found serial ports: " + ports.mkString(", "))
   }
 }
