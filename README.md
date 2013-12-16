@@ -30,7 +30,7 @@ The operator accepts
 
     operator ! Close
 
-The operator will send 
+The operator will send
 
 -   Received: Data was received no the serial port (ByteString).
 
@@ -52,7 +52,14 @@ For more information see the [Akka IO Documentation][].
 
 ## Notes
 
-Make sure you have the rxtx native libraries on the java library path.
+-   Make sure you have the rxtx native libraries on the java library path.
+
+-   If on Mac OS X you keep getting "gnu.io.PortInUseException: Unknown Application” try to create the /var/lock and give all users access to it.
+
+<!-- -->
+
+    sudo mkdir /var/lock
+    sudo chmod 777 /var/lock
 
 ## References
 
