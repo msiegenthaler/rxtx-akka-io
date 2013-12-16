@@ -15,6 +15,7 @@ private[rxtxio] class SerialOperator(port: SerialPort, commander: ActorRef) exte
 
   override def preStart = {
     port.notifyOnDataAvailable(true);
+    port.enableReceiveTimeout(1);
     val toNotify = self
     port.addEventListener(new SerialPortEventListener() {
       override def serialEvent(event: SerialPortEvent) {
