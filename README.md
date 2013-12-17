@@ -4,6 +4,8 @@ Akka IO library in scala for serial ports based on rxtx.
 
 ## Usage
 
+    libraryDependencies += "ch.inventsoft.akka" %% "rxtx-akka-io" % "1.0.0-SNAPSHOT"
+
 To connect use (in an actor):
 
     override def preStart = IO(Serial) ! Open(port, 9600) 
@@ -20,8 +22,6 @@ The operator accepts
 -   Write: To write data to the serial port (a ByteString).
 
 -   Close: To close the serial port.
-
-<!-- -->
 
     operator ! Write(ByteString(“Hello”)) // no ack
 
@@ -55,8 +55,6 @@ For more information see the [Akka IO Documentation][].
 -   Make sure you have the rxtx native libraries on the java library path.
 
 -   If on Mac OS X you keep getting "gnu.io.PortInUseException: Unknown Application” try to create the /var/lock and give all users access to it.
-
-<!-- -->
 
     sudo mkdir /var/lock
     sudo chmod 777 /var/lock
