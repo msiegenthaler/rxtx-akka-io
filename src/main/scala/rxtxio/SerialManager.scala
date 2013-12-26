@@ -29,7 +29,7 @@ private[rxtxio] class SerialManager extends Actor {
         }
       } match {
         case Success(serialPort) =>
-          val operator = context.actorOf(Props(new SerialOperator(serialPort, sender)))
+          val operator = context.actorOf(SerialOperator.props(serialPort, sender))
           sender ! Opened(operator, port)
         case Failure(error) =>
           sender ! CommandFailed(c, error)

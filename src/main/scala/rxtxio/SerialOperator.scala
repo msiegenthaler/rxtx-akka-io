@@ -58,3 +58,6 @@ private[rxtxio] class SerialOperator(port: SerialPort, commander: ActorRef) exte
     bsb.result
   }
 }
+private[rxtxio] object SerialOperator {
+  def props(port: SerialPort, commander: ActorRef) = Props(new SerialOperator(port, commander))
+}
