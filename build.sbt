@@ -4,7 +4,7 @@ organization := "ch.inventsoft.akka"
 
 scalaVersion := "2.10.3"
 
-version := "1.0.1-SNAPSHOT"
+version := "1.0.2-SNAPSHOT"
 
 licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 
