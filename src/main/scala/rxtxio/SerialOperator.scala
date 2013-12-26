@@ -38,6 +38,7 @@ private[rxtxio] class SerialOperator(port: SerialPort, commander: ActorRef) exte
 
     case Write(data, ack) =>
       out.write(data.toArray)
+      out.flush
       if (ack != NoAck) sender ! ack
 
     case DataAvailable =>
