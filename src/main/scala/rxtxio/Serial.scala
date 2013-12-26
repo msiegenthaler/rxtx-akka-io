@@ -29,8 +29,35 @@ object Serial extends ExtensionId[SerialExt] with ExtensionIdProvider {
   /** Command that may be sent to the operator actor. */
   sealed trait OperatorCommand extends Command
 
+  sealed trait DataBits
+  object DataBits8 extends DataBits
+  object DataBits7 extends DataBits
+  object DataBits6 extends DataBits
+  object DataBits5 extends DataBits
+
+  sealed trait Parity
+  object NoParity extends Parity
+  object EvenParity extends Parity
+  object OddParity extends Parity
+  object MarkParity extends Parity
+  object SpaceParity extends Parity
+
+  sealed trait StopBits
+  object OneStopBit extends StopBits
+  object TwoStopBits extends StopBits
+  object OneAndHalfStopBits extends StopBits
+
+  sealed trait FlowControl
+  object NoFlowControl extends FlowControl
+  object RtsFlowControl extends FlowControl
+  object XonXoffFlowControl extends FlowControl
+
   /** Open a serial port. Response: Opened | CommandFailed */
-  case class Open(port: String, baudRate: Int) extends ManagerCommand
+  case class Open(port: String, baudRate: Int,
+    dataBits: DataBits = DataBits8,
+    parity: Parity = NoParity,
+    stopBits: StopBits = OneStopBit,
+    flowControl: FlowControl = NoFlowControl) extends ManagerCommand
 
   /**
    *  Serial port is now open.

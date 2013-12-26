@@ -18,12 +18,36 @@ private[rxtxio] class SerialManager extends Actor {
       val ports = ids.map(_.getName).toVector
       sender ! Ports(ports)
 
-    case c @ Open(port, baudRate) =>
+    case c @ Open(port, baudRate, dataBits, parity, stopBits, flowControl) =>
       Try {
         val id = CommPortIdentifier.getPortIdentifier(port)
+        val data = dataBits match {
+          case DataBits5 => DATABITS_5
+          case DataBits6 => DATABITS_6
+          case DataBits7 => DATABITS_7
+          case DataBits8 => DATABITS_8
+        }
+        val stop = stopBits match {
+          case OneStopBit => STOPBITS_1
+          case OneAndHalfStopBits => STOPBITS_1_5
+          case TwoStopBits => STOPBITS_2
+        }
+        val par = parity match {
+          case NoParity => PARITY_NONE
+          case EvenParity => PARITY_EVEN
+          case OddParity => PARITY_ODD
+          case MarkParity => PARITY_MARK
+          case SpaceParity => PARITY_SPACE
+        }
+        val fc = flowControl match {
+          case NoFlowControl => FLOWCONTROL_NONE
+          case RtsFlowControl => FLOWCONTROL_RTSCTS_IN | FLOWCONTROL_RTSCTS_OUT
+          case XonXoffFlowControl => FLOWCONTROL_XONXOFF_IN | FLOWCONTROL_XONXOFF_OUT
+        }
         id.open(context.self.toString, 2000) match {
           case sp: SerialPort =>
-            sp.setSerialPortParams(baudRate, DATABITS_8, STOPBITS_1, PARITY_NONE)
+            sp.setSerialPortParams(baudRate, data, stop, par)
+            sp.setFlowControlMode(fc)
             sp
           case _ => throw new RuntimeException(s"$port is not a SerialPort.")
         }
