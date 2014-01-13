@@ -4,7 +4,7 @@ Akka IO library in scala for serial ports based on rxtx.
 
 ## Usage
 
-    libraryDependencies += "ch.inventsoft.akka" %% "rxtx-akka-io" % "1.0.0-SNAPSHOT"
+    libraryDependencies += "ch.inventsoft.akka" %% "rxtx-akka-io" % "1.0.2"
 
 To connect use (in an actor):
 
