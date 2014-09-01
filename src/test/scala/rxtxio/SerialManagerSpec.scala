@@ -8,7 +8,7 @@ import org.scalatest.matchers.ShouldMatchers
 import org.scalatest.FunSuiteLike
 import Serial._
 
-class SerialMangerSpec extends TestKit(ActorSystem("SerialManagerSpec"))
+class SerialManagerSpec extends TestKit(ActorSystem("SerialManagerSpec"))
   with FunSuiteLike
   with BeforeAndAfterAll
   with ShouldMatchers
