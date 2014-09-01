@@ -5,11 +5,11 @@ import akka.io._
 import akka.testkit._
 import org.scalatest.BeforeAndAfterAll
 import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.FunSuite
+import org.scalatest.FunSuiteLike
 import Serial._
 
 class SerialMangerSpec extends TestKit(ActorSystem("SerialManagerSpec"))
-  with FunSuite
+  with FunSuiteLike
   with BeforeAndAfterAll
   with ShouldMatchers
   with ImplicitSender {
